@@ -35,4 +35,3 @@ pytest-django = "~=3.4"
 
 [requires]
 python_version = "3.6"
-postgis = "2.4"
