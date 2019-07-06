@@ -1,4 +1,4 @@
-FROM gitpod/workspace-postgresql:latest
+FROM gitpod/workspace-postgres:latest
 
 USER root
 # Install custom tools, runtime, etc.
