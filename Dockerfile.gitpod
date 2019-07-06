@@ -1,12 +1,14 @@
 FROM gitpod/workspace-full:latest
 
 ENV PG_MAJOR 10
-ENV POSTGIS_MAJOR 2.4
-ENV POSTGIS_VERSION 2.4.3+dfsg-2.pgdg90+1
+ENV POSTGIS_MAJOR 2.5
+ENV POSTGIS_VERSION 2.5.2+dfsg-1~exp1.pgdg90+1
+
 
 # Install PostgreSQL and postgis
 RUN sudo apt-get update \
  && sudo apt-get install -y postgresql postgresql-contrib \
+ && apt-cache showpkg postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR \
  && sudo apt-get install -y --no-install-recommends \
            postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR=$POSTGIS_VERSION \
            postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR-scripts=$POSTGIS_VERSION \
