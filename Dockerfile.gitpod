@@ -8,15 +8,21 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         libffi-dev \
         libgdal-dev \
         libssl-dev \
+        postgis \
+        postgresql-10-postgis-scripts \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* \
     && pip install pipenv
 
 USER gitpod
 # Apply user-specific settings
 # ENV ...
+ENV DJANGO_SETTINGS_MODULE woeip.settings
+ENV PIPENV_DONT_USE_PYENV 1
+ENV PIPENV_SYSTEM 1
+
 ENV DEBUG true
 ENV SECRET_KEY replace-me
-ENV DATABASE_URL postgis://postgres:postgres@localhost:5432/woeip?connect_timeout=60
+ENV DATABASE_URL postgis://gitpod:gitpod@localhost:5432/postgres?connect_timeout=60
 ENV DEFAULT_FILE_STORAGE django.core.files.storage.FileSystemStorage
 
 # Give back control
