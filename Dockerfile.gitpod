@@ -14,9 +14,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 USER gitpod
 # Apply user-specific settings
 # ENV ...
-RUN virtualenv -p python3.7 venv
-RUN ls -al venv
-#RUN source venv/bin/activate
 
 # Give back control
 USER root
