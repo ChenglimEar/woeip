@@ -1,5 +1,5 @@
 image:
-  file: Dockerfile.gitpod
+  file: .gitpod.dockerfile
 tasks:
   - init: make requirements; pipenv shell
     command: make migrate; make static
