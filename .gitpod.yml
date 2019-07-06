@@ -1,6 +1,6 @@
 image:
   file: Dockerfile.gitpod
 tasks:
-  - init: make requirements; source .venv/bin/activate; make migrate; make static
+  - init: make requirements; source .venv/bin/activate
 ports:
 - port: 8000
