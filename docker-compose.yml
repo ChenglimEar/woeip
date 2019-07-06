@@ -1,5 +1,17 @@
 version: "3"
 services:
+  test:
+    build:
+      context: ./
+      dockerfile: Dockerfile.test
+    container_name: test
+    image: openoakland/test:latest
+  gitpod:
+    build:
+      context: ./
+      dockerfile: Dockerfile.gitpod
+    container_name: gitpod
+    image: openoakland/gitpod:latest
   app:
     build:
       context: ./

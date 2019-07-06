@@ -2,8 +2,12 @@ FROM gitpod/workspace-full:latest
 
 ENV PG_MAJOR 10
 ENV POSTGIS_MAJOR 2.5
-ENV POSTGIS_VERSION 2.5.2+dfsg-1~exp1.pgdg90+1
+#ENV POSTGIS_VERSION 2.5.2+dfsg-1~exp1.pgdg90+1
+ENV POSTGIS_VERSION 2.5.2+dfsg-1~exp1.pgdg18.10+1
 
+RUN sudo lsb_release -a 
+RUN sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt cosmic-pgdg main" >> /etc/apt/sources.list'
+RUN wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
 # Install PostgreSQL and postgis
 RUN sudo apt-get update \
@@ -16,7 +20,7 @@ RUN sudo apt-get update \
  && sudo apt-get clean \
  && sudo rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
 
-RUN mkdir -p /docker-entrypoint-initdb.d
+RUN sudo mkdir -p /docker-entrypoint-initdb.d
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 COPY ./update-postgis.sh /usr/local/bin
 
@@ -50,21 +54,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         libssl-dev \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* \
     && pip install pipenv
-
-ENV PG_MAJOR 10
-ENV POSTGIS_MAJOR 2.4
-ENV POSTGIS_VERSION 2.4.3+dfsg-2.pgdg90+1
-
-RUN apt-get update \
-      && apt-get install -y --no-install-recommends \
-           postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR=$POSTGIS_VERSION \
-           postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR-scripts=$POSTGIS_VERSION \
-           postgis=$POSTGIS_VERSION \
-      && rm -rf /var/lib/apt/lists/*
-
-RUN mkdir -p /docker-entrypoint-initdb.d
-COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
-COPY ./update-postgis.sh /usr/local/bin
 
 USER gitpod
 # Apply user-specific settings
