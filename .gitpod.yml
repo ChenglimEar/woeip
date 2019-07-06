@@ -1,6 +1,4 @@
 image:
-  file: Dockerfile.gitpod
-tasks:
-  - init: make requirements; source .venv/bin/activate
+  file: .gitpod.dockerfile
 ports:
 - port: 8000
