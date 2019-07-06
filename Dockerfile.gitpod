@@ -16,7 +16,7 @@ USER gitpod
 # ENV ...
 RUN virtualenv -p python3.7 venv
 RUN ls -al venv
-RUN source venv/bin/activate
+#RUN source venv/bin/activate
 
 # Give back control
 USER root
