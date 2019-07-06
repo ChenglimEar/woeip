@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 USER gitpod
 # Apply user-specific settings
-ENV ...
+# ENV ...
 
 # Give back control
 USER root
