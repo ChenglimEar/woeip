@@ -1,4 +1,6 @@
 image:
   file: Dockerfile.gitpod
+tasks:
+  - init: virtualenv -p python3.7 venv
 ports:
 - port: 8000
