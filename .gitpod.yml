@@ -1,4 +1,7 @@
 image:
   file: Dockerfile.gitpod
+tasks:
+  init: make requirements; pipenv shell
+  command: make migrate; make static
 ports:
 - port: 8000
