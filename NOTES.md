@@ -6,3 +6,4 @@ To check postgres status:
 To access postgres from command line:
 > psql -h localhost -d postgres
 
+
