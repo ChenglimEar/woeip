@@ -80,6 +80,7 @@ ENV ENABLE_LOGGING_TO_FILE true
 USER gitpod
 # Apply user-specific settings
 # ENV ...
+git config --global core.editor "vim"
 
 # Give back control
 USER root
