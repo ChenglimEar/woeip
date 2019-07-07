@@ -6,6 +6,11 @@ services:
       dockerfile: .gitpod.dockerfile
     container_name: gitpod
     image: openoakland/gitpod:latest
+    entrypoint: /bin/bash
+    working_dir: /workspace/woeip
+    user: gitpod
+    volumes:
+      - .:/workspace/woeip
   app:
     build:
       context: ./

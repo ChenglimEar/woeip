@@ -53,9 +53,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* \
     && pip install pipenv
 
-USER gitpod
-# Apply user-specific settings
-# ENV ...
 ENV DJANGO_SETTINGS_MODULE woeip.settings
 #ENV PIPENV_DONT_USE_PYENV 1
 #ENV PIPENV_SYSTEM 1
@@ -64,6 +61,25 @@ ENV DEBUG true
 ENV SECRET_KEY replace-me
 ENV DATABASE_URL postgis://gitpod:gitpod@localhost:5432/postgres?connect_timeout=60
 ENV DEFAULT_FILE_STORAGE django.core.files.storage.FileSystemStorage
+
+RUN mkdir -p /logs \
+    && chmod a+rwx /logs \
+    && touch /logs/app.log \
+    && touch /logs/gunicorn.log \
+    && chmod a+rw /logs/*.log \
+    && mkdir -p /public/static \
+    && chmod a+rwx /public/static \
+    && mkdir -p /app/woeip \
+    && chmod a+rwx /app/woeip
+
+
+ENV PUBLIC_ROOT /public
+ENV LOG_FILE_PATH /logs
+ENV ENABLE_LOGGING_TO_FILE true
+
+USER gitpod
+# Apply user-specific settings
+# ENV ...
 
 # Give back control
 USER root

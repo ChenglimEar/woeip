@@ -1,7 +1,6 @@
 image:
   file: .gitpod.dockerfile
 tasks:
-  - init: make requirements; pipenv shell
-    command: make migrate; make static
+  - init: .gitpod/setup.sh
 ports:
 - port: 8000
