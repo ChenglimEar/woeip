@@ -11,3 +11,5 @@ To develop locally within a docker container:
 
 After running gitpod container:
 > .gitpod/setup.sh
+
+To create tests, look for tests directory
